@@ -1,3 +1,7 @@
+# Besides the template
+build/
+.cache/
+
 # Prerequisites
 *.d
 
