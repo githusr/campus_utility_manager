@@ -1,4 +1,5 @@
-#include "handle_invalid_input.h"
+#include "utility/rate.h"
+#include "user/student.h"
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
@@ -6,15 +7,18 @@
 #include <string>
 int main(int argc, char *argv[])
 {
+    Admin admin("admin");
+    Rate
+    Student
     system("clear");
-    std::cout << "------------------------------------------" << std::endl;
-    std::cout << "\t欢迎使用水电气信息管理系统\t" << std::endl;
-    std::cout << "------------------------------------------" << std::endl;
-    std::cout << "1. 账单查询" << std::endl;
-    std::cout << "2. 管理员登陆" << std::endl;
-    std::cout << "3. 退出系统" << std::endl;
-    std::cout << "------------------------------------------" << std::endl;
-    std::cout << "请选择功能: ";
+    puts("------------------------------------------");
+    puts("\t欢迎使用水电气信息管理系统\t");
+    puts("------------------------------------------");
+    puts("1. 账单查询");
+    puts("2. 管理员登陆" );
+    puts("3. 退出系统" );
+    puts("------------------------------------------");
+    puts("请选择功能: ");
     int choice = 0;
     std::cin >> choice;
     try {
@@ -46,11 +50,13 @@ int main(int argc, char *argv[])
     default:
         system("clear");
         throw std::runtime_error("无效输入, 请重新输入!");
-        handleInvalidInput("无效输入, 请重新输入!");
+        // handleInvalidInput("无效输入, 请重新输入!");
         break;
     }
     }
     catch (const std::runtime_error &err) {
-        handleInvalidInput(err.what());
+        // handleInvalidInput(err.what());
     }
+
+    return EXIT_SUCCESS;
 }
