@@ -5,16 +5,8 @@
 class Admin
 {
 public:
-    Admin();
-    void resetPassword();
-    void addUtilityData();
-    void removeUtilityData();
-    void updateUtilityData();
-    void viewUtilityData();
-    void addRate();
-    void removeRate();
-    void updateRate();
-    void viewRate();
+    Admin(const char *password);
+    void setPassword();
 
 private:
     std::string password;
