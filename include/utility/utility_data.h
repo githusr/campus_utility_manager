@@ -11,6 +11,9 @@ public:
 
 private:
     std::vector<std::pair<std::string, double>> utility_data;
+    std::vector<std::pair<double, bool>> fee_data;
+    double fee_to_pay;
+    bool is_overdue;
 };
 
 #endif

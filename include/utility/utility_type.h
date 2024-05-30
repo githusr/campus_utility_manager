@@ -5,7 +5,7 @@ using UtilityType = enum {
         WATER,
         ELECTRICITY,
         GAS,
-        TOTAL
+        UTILITY_TYPE_TOTAL
     };
 
 #endif

@@ -9,6 +9,7 @@ public:
 private:
     double free_Quota;
     double unitPrice;
+    double limit;
 };
 
 #endif
