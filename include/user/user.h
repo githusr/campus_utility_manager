@@ -1,19 +1,19 @@
 #ifndef USER_H
 #define USER_H
 
-#include "system/user_data_manager.h"
 #include "utility/utility_data.h"
 #include "utility/utility_type.h"
 #include <array>
 #include <string>
 class User
 {
-friend void UserDataManager<User>::sortDataByFee(UtilityType utility_type);
+public:
+    const auto &getId() const;
+    const auto &getName() const;
+    const auto &getUtilityData(auto &utility_type) const;
 
 public:
     User(std::string id, std::string name);
-    void getId() const;
-    void getName() const;
 
 protected:
     std::string id;

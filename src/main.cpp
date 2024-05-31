@@ -1,6 +1,8 @@
+#include "system/user_data_manager.h"
 #include "tui/build_menu.h"
 #include "tui/interaction.h"
 #include "tui/menu.h"
+#include "user/faculty.h"
 #include "user/student.h"
 #include "utility/rate.h"
 #include "tui/action.h"
@@ -10,6 +12,8 @@
 #include <menu.h>
 #include <stdexcept>
 #include <string>
+
+
 int main(int argc, char *argv[])
 {
     Admin admin("admin");
@@ -44,12 +48,6 @@ int main(int argc, char *argv[])
             // std::string password;
             // std::cin >> password;
             break;
-        case 3:
-            system("clear");
-            std::cout << "------------------------------------------" << std::endl;
-            std::cout << "感谢您的使用, 再见!" << std::endl;
-            std::cout << "------------------------------------------" << std::endl;
-            break;
         default:
             system("clear");
             throw std::runtime_error("无效输入, 请重新输入!");
@@ -60,13 +58,6 @@ int main(int argc, char *argv[])
         // handleInvalidInput(err.what());
     }
 
-    Menu main_menu("主菜单");
-
-    puts("------------------------------------------");
-    puts("\t欢迎使用水电气信息管理系统\t");
-    puts("------------------------------------------");
-    waitForKey();
-
     showWelcome();
 
     try {
@@ -74,8 +65,7 @@ int main(int argc, char *argv[])
         main_menu.execute();
     } catch (std::runtime_error &err) {
         outputError(err);
-    }
-
+}
     showGoodbye();
 
     return EXIT_SUCCESS;

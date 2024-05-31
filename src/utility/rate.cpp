@@ -25,7 +25,4 @@ void Rate::setFromUser()
     std::cin >> *this;
 }
 
-const double &Rate::getFreeQuota() const { return free_quota; }
-const double &Rate::getUnitPrice() const { return unit_price; }
-
 Rate::Rate(double free_quota, double unit_price) : free_quota(free_quota), unit_price(unit_price) {}

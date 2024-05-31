@@ -1,4 +1,4 @@
-#include "user/admin.h"
+#include "admin.h"
 #include <iostream>
 
 Admin::Admin(const char *password) : password(password) {}
