@@ -1,15 +1,20 @@
 #ifndef RATE_H
 #define RATE_H
 
+#include <istream>
 class Rate
 {
+    friend std::istream &operator>>(std::istream &is, Rate &rate);
+
 public:
-    Rate();
+    void readFromUser();
+
+public:
+    Rate(double free_quota, double unit_price);
 
 private:
-    double free_Quota;
-    double unitPrice;
-    double limit;
+    double free_quota;
+    double unit_price;
 };
 
 #endif
