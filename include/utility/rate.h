@@ -7,7 +7,9 @@ class Rate
     friend std::istream &operator>>(std::istream &is, Rate &rate);
 
 public:
-    void readFromUser();
+    void setFromUser();
+    const double &getFreeQuota() const;
+    const double &getUnitPrice() const;
 
 public:
     Rate(double free_quota, double unit_price);
