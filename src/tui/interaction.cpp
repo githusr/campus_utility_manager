@@ -28,10 +28,9 @@ void showWelcome()
     clearScreen();
     puts("------------------------------------------");
     puts("\t欢迎使用水电气信息管理系统\t");
-    puts("------------------------------------------");
 }
 
-void outputError(const std::runtime_error &err)
+void outputError(const auto &err)
 {
     clearScreen();
     std::cerr << err.what() << std::endl;

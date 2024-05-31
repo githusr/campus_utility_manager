@@ -8,8 +8,6 @@ class Rate
 
 public:
     void setFromUser();
-    const double &getFreeQuota() const;
-    const double &getUnitPrice() const;
 
 public:
     Rate(double free_quota, double unit_price);
