@@ -1,5 +1,6 @@
 #include "utility/utility_data.h"
 #include "utility/rate.h"
+#include <fstream>
 #include <iostream>
 #include <ranges>
 #include <string>
@@ -16,14 +17,27 @@ std::istream &operator>>(std::istream &is, UtilityData &utility_data)
     return is;
 }
 
-void UtilityData::addFromUser()
+std::ostream &operator<<(std::ostream &os, const UtilityData &utility_data)
+{
+    for (const auto &data : utility_data.utility_data) {
+        os << data.first << " " << data.second << std::endl;
+    }
+
+    return os;
+}
+
+void UtilityData::addFromUser(const Rate& rate)
 {
     std::cout << "请输入抄表日期和抄表度数（用空格分隔）:" << std::endl;
     std::cin >> *this;
-    updateFeeData();
+    updateFeeData(rate);
 }
 
-void UtilityData::setRateFromUser() { rate.setFromUser(); }
+void UtilityData::addFromFile(const Rate& rate, std::ifstream &file_name)
+{
+    file_name >> *this;
+    updateFeeData(rate);
+}
 
 void UtilityData::pay()
 {
@@ -41,7 +55,7 @@ static Rate rate(0, 0);
 
 UtilityData::UtilityData() : fee_to_pay(0) {}
 
-void UtilityData::setFeeData()
+void UtilityData::setFeeData(const Rate& rate)
 {
     auto size = utility_data.size();
     if (size >= 2) {
@@ -69,8 +83,8 @@ void UtilityData::calculateFeeToPay()
     }
 }
 
-void UtilityData::updateFeeData()
+void UtilityData::updateFeeData(const Rate& rate)
 {
-    setFeeData();
+    setFeeData(rate);
     calculateFeeToPay();
 }
