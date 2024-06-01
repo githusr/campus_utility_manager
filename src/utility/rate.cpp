@@ -8,7 +8,7 @@ std::istream &operator>>(std::istream &is, Rate &rate)
     is >> free_quota >> unit_price;
 
     if (rate.free_quota < 0 || rate.unit_price < 0) {
-        throw std::runtime_error("免费额度和单价不能为负数，请重新输入");
+        throw std::runtime_error("免费额度和单价不能为负数");
         return is;
     }
 
@@ -24,5 +24,9 @@ void Rate::setFromUser()
     std::cout << "请输入新的免费额度和单价（用空格分隔）:";
     std::cin >> *this;
 }
+
+const double &Rate::getFreeQuota() const { return free_quota; }
+
+const double &Rate::getUnitPrice() const { return unit_price; }
 
 Rate::Rate(double free_quota, double unit_price) : free_quota(free_quota), unit_price(unit_price) {}

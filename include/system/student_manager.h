@@ -5,7 +5,6 @@
 #include "user/student.h"
 class StudentManager : public UserDataManager<Student>
 {
-   
 };
 
 #endif
