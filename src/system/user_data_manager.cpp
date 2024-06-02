@@ -156,7 +156,7 @@ void UserDataManager::outputData() const
 
 void UserDataManager::outputHistory() const
 {
-    bool is_first;
+    bool is_first = true;
     for (const auto &data : vdata) {
         if (is_first) {
             data->showTitleForHistory();

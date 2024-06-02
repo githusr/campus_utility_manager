@@ -23,16 +23,6 @@ void waitForKey()
         scanf("%c", &tmp);
     } while (tmp != '\n' && tmp != EOF);
     getchar();
-
-    // int ch;
-    // while ((ch = getchar()) != '\n' && ch != EOF);
-    // getchar();
-
-    // std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-    // 等待用户输入换行符
-    // std::string line;
-    // std::getline(std::cin, line);
 }
 
 void showWelcome()

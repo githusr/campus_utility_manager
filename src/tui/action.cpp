@@ -1,6 +1,6 @@
 #include "tui/action.h"
-#include "admin.h"
 #include "system/user_data_manager.h"
+#include "tui/admin.h"
 #include "tui/interaction.h"
 #include "user/faculty.h"
 #include "user/student.h"
@@ -12,24 +12,27 @@
 #include <memory>
 #include <string>
 
-UserDataManager student_manager("../data/student_input.txt", "../data/student_output.txt");
-UserDataManager faculty_manager("../data/faculty_input.txt", "../data/faculty_output.txt");
+UserDataManager student_manager("data/student_input.txt", "data/student_output.txt");
+UserDataManager faculty_manager("data/faculty_input.txt", "data/faculty_output.txt");
 
 Admin admin("admin");
 
 bool isLogin = false;
+bool login_status = false;
 
 void adminLogin()
 {
-    std::cout << "请输入管理员密码: ";
-    std::string password;
-    std::cin >> password;
-    if (password == admin.getPassword()) {
-        isLogin = true;
-        std::cout << "登录成功" << std::endl;
-    } else {
-        isLogin = false;
-        outputError("密码错误");
+    if (!login_status) {
+        std::cout << "请输入管理员密码: ";
+        std::string password;
+        std::cin >> password;
+        if (password == admin.getPassword()) {
+            isLogin = true;
+            std::cout << "登录成功" << std::endl;
+        } else {
+            isLogin = false;
+            outputError("密码错误");
+        }
     }
 }
 
@@ -164,9 +167,15 @@ void historyDataFaculty() { faculty_manager.outputHistory(); }
 
 void processAndExportDataStudent()
 {
-
-    std::cout << "请按顺序输入您想进行的操作: " << std::endl;
-    std::cout << "1. 按编号排序" << std::endl;
+    puts("请按顺序输入您想进行的操作: ");
+    puts("1. 按编号排序");
+    puts("2. 按姓名排序");
+    puts("3. 按未缴水费排序");
+    puts("4. 按未缴电费排序");
+    puts("5. 按未缴气费排序");
+    puts("6. 反转数据");
+    puts("7. 输出数据");
+    puts("8. 保存数据");
     std::function<void()> actions[]{
         [&] { student_manager.sortDataById(); },       [&] { student_manager.sortDataByName(); },
         [&] { student_manager.sortDataByWaterFee(); }, [&] { student_manager.sortDataByElectricityFee(); },
@@ -185,12 +194,18 @@ void processAndExportDataStudent()
 
 void processAndExportDataFaculty()
 {
-
-    std::cout << "请按顺序输入您想进行的操作: " << std::endl;
-    std::cout << "1. 按编号排序" << std::endl;
+    puts("请按顺序输入您想进行的操作: ");
+    puts("1. 按编号排序");
+    puts("2. 按姓名排序");
+    puts("3. 按未缴水费排序");
+    puts("4. 按未缴电费排序");
+    puts("5. 按未缴气费排序");
+    puts("6. 反转数据");
+    puts("7. 输出数据");
+    puts("8. 保存数据");
     std::function<void()> actions[]{
         [&] { faculty_manager.sortDataById(); },       [&] { faculty_manager.sortDataByName(); },
-        [&] { student_manager.sortDataByWaterFee(); }, [&] { faculty_manager.sortDataByElectricityFee(); },
+        [&] { faculty_manager.sortDataByWaterFee(); }, [&] { faculty_manager.sortDataByElectricityFee(); },
         [&] { faculty_manager.sortDataByGasFee(); },   [&] { faculty_manager.reverseData(); },
         [&] { faculty_manager.outputData(); },         [&] {faculty_manager.saveToFile(); }};
     std::string str;
