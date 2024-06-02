@@ -1,16 +1,23 @@
 #ifndef MENU_ITEM_H
 #define MENU_ITEM_H
 
-#include "tui/menu_component.h"
+#include <memory>
 #include <string>
-class MenuItem : public MenuComponent
+#include <vector>
+
+class MenuItem
 {
 public:
-    MenuItem(const std::string &name, void (*action)());
-    void execute() override;
+    MenuItem(std::string name, void (*action)() = nullptr);
 
-private:
+public:
+    void addSubItem(std::shared_ptr<MenuItem> sub_item);
+    void printMenu() const;
+
+public:
+    std::string name;
     void (*action)();
+    std::vector<std::shared_ptr<MenuItem>> sub_items;
 };
 
 #endif

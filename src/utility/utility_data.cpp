@@ -26,14 +26,19 @@ std::ostream &operator<<(std::ostream &os, const UtilityData &utility_data)
     return os;
 }
 
-void UtilityData::addFromUser(const Rate& rate)
+bool UtilityData::operator<(const UtilityData &utility_data) const
+{
+    return this->fee_to_pay < utility_data.fee_to_pay;
+}
+
+void UtilityData::addFromUser(Rate rate)
 {
     std::cout << "请输入抄表日期和抄表度数（用空格分隔）:" << std::endl;
     std::cin >> *this;
     updateFeeData(rate);
 }
 
-void UtilityData::addFromFile(const Rate& rate, std::ifstream &file_name)
+void UtilityData::addFromFile(const Rate &rate, std::ifstream &file_name)
 {
     file_name >> *this;
     updateFeeData(rate);
@@ -55,7 +60,7 @@ static Rate rate(0, 0);
 
 UtilityData::UtilityData() : fee_to_pay(0) {}
 
-void UtilityData::setFeeData(const Rate& rate)
+void UtilityData::setFeeData(const Rate &rate)
 {
     auto size = utility_data.size();
     if (size >= 2) {
@@ -83,8 +88,10 @@ void UtilityData::calculateFeeToPay()
     }
 }
 
-void UtilityData::updateFeeData(const Rate& rate)
+void UtilityData::updateFeeData(const Rate &rate)
 {
     setFeeData(rate);
     calculateFeeToPay();
 }
+
+double UtilityData::getFeeToPay() const { return fee_to_pay; }
