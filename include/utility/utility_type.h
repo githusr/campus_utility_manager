@@ -1,7 +1,7 @@
 #ifndef UTILITY_TYPE_H
 #define UTILITY_TYPE_H
 
-using UtilityType = enum {
+using UtilityType = enum UtilityType{
         WATER,
         ELECTRICITY,
         GAS,

@@ -2,22 +2,27 @@
 #define STUDENT_H
 
 #include "user.h"
-#include <fstream>
 #include <istream>
 
 class Student : public User
 {
-    friend std::istream &operator>>(std::istream &is, Student &student);
-    friend std::ostream &operator<<(std::ostream &os, const Student &student);
 public:
-    static void showTitleForHistory(); 
-    static void showTitleForUserInfo();
+    void showTitleForHistory() override; 
+    void showTitleForUserInfo() override;
+
+public:
+    void showUserInfo(std::ostream &os) const override;
     
 public:
+    Student() = default;
     Student(std::string id, std::string name, int grade);
 
 private:
     int grade;
+
+private:
+    std::istream &read(std::istream &is) override;
+    std::ostream &print(std::ostream &os) const override;
 };
 
 #endif

@@ -1,7 +1,10 @@
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
+#include <stdexcept>
 #include "tui/interaction.h"
+
+bool isWaitingForKey = false;
 
 void clearScreen()
 {
@@ -30,11 +33,12 @@ void showWelcome()
     puts("\t欢迎使用水电气信息管理系统\t");
 }
 
-void outputError(const auto &err)
+void outputError(const std::runtime_error &err)
 {
     clearScreen();
     std::cerr << err.what() << std::endl;
     waitForKey();
+    isWaitingForKey = true;
 }
 
 void showGoodbye()

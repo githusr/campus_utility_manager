@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+add_compile_options(-Wall -g)
+
 include_directories(include)
 file(GLOB_RECURSE SRC "src/*.cpp")
 add_executable(main ${SRC})

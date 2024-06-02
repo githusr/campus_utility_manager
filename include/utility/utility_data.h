@@ -13,12 +13,18 @@ class UtilityData
     friend std::ostream &operator<<(std::ostream &os, const UtilityData &utility_data);
 
 public:
-    void addFromUser(const Rate &rate);
+    bool operator<(const UtilityData &utility_data) const;
+
+public:
+    void addFromUser(Rate rate);
     void addFromFile(const Rate &rate, std::ifstream &file_name);
     void pay();
 
 public:
     UtilityData();
+
+public:
+    double getFeeToPay() const;
 
 private:
     std::vector<std::pair<std::string, double>> utility_data;
