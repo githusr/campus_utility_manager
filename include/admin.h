@@ -2,6 +2,7 @@
 #define ADMIN_H
 
 #include <string>
+
 class Admin
 {
 public:

@@ -2,7 +2,6 @@
 #include "admin.h"
 #include "system/user_data_manager.h"
 #include "tui/interaction.h"
-#include "tui/menu_item.h"
 #include "user/faculty.h"
 #include "user/student.h"
 #include "user/user_type.h"
@@ -11,9 +10,7 @@
 #include <functional>
 #include <iostream>
 #include <memory>
-#include <stack>
 #include <string>
-#include <utility>
 
 UserDataManager student_manager("../data/student_input.txt", "../data/student_output.txt");
 UserDataManager faculty_manager("../data/faculty_input.txt", "../data/faculty_output.txt");
@@ -28,8 +25,8 @@ void adminLogin()
     std::string password;
     std::cin >> password;
     if (password == admin.getPassword()) {
-       isLogin = true;
-       std::cout << "登录成功" << std::endl;
+        isLogin = true;
+        std::cout << "登录成功" << std::endl;
     } else {
         isLogin = false;
         outputError("密码错误");

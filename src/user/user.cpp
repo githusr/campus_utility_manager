@@ -10,7 +10,10 @@
 #include <string>
 #include <utility>
 
-void User::setRate(UserType user_type, UtilityType utility_type) { rate[user_type][utility_type].setFromUser(); }
+void User::setRate(UserType user_type, UtilityType utility_type)
+{
+    rate[user_type][utility_type].setFromUser();
+}
 
 const std::string &User::getId() const { return id; }
 
@@ -41,14 +44,8 @@ void User::showHistory(std::ostream &os) const
 
 User::User(std::string id, std::string name) : id(std::move(id)), name(std::move(name)) {}
 
-std::istream &operator>>(std::istream &is, User &user)
-{
-    return user.read(is);
-}
+std::istream &operator>>(std::istream &is, User &user) { return user.read(is); }
 
-std::ostream &operator<<(std::ostream &os, const User &user)
-{
-    return user.print(os);
-}
+std::ostream &operator<<(std::ostream &os, const User &user) { return user.print(os); }
 
 std::array<std::array<Rate, UTILITY_TYPE_TOTAL>, USER_TYPE_TOTAL> User::rate = {};

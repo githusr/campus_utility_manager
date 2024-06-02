@@ -1,7 +1,8 @@
 #ifndef INTERACTION_H
 #define INTERACTION_H
 
-#include <stdexcept>
+#include <string>
+
 void clearScreen();
 
 void waitForKey();

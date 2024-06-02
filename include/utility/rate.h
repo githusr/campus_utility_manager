@@ -2,6 +2,7 @@
 #define RATE_H
 
 #include <istream>
+
 class Rate
 {
     friend std::istream &operator>>(std::istream &is, Rate &rate);
