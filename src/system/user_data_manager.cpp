@@ -1,4 +1,5 @@
 #include "system/user_data_manager.h"
+#include "tui/interaction.h"
 #include "utility/utility_type.h"
 #include <iostream>
 
@@ -13,7 +14,7 @@ void UserDataManager::searchDataByUser(const std::string &id, const std::string 
     auto it = std::find_if(vdata.begin(), vdata.end(),
                            [&](const auto &data) { return data->getId() == id && data->getName() == name; });
     if (it == vdata.end()) {
-        throw std::runtime_error("用户不存在");
+        outputError("用户不存在");
     } else {
         (*it)->showTitleForUserInfo();
         (*it)->showUserInfo(std::cout);
@@ -29,7 +30,7 @@ void UserDataManager::addUser(std::shared_ptr<User> data)
 {
     std::cin >> *data;
     if (isUserExist(data->getId())) {
-        throw std::runtime_error("用户已存在");
+        outputError("用户已存在");
         return;
     }
     vdata.emplace_back(std::move(data));
@@ -40,7 +41,7 @@ void UserDataManager::addData(UserType user_type)
     std::string id;
     std::cin >> id;
     if (!isUserExist(id)) {
-        throw std::runtime_error("用户不存在");
+        outputError("用户不存在");
         return;
     }
     std::string utility_type;
@@ -52,7 +53,7 @@ void UserDataManager::addData(UserType user_type)
     } else if (utility_type == "gas") {
         (*searchDataByAdmin(id))->addUtilityDataFromUser(user_type, GAS);
     } else {
-        throw std::runtime_error("未知的水电气类型");
+        outputError("未知的水电气类型");
         return;
     }
 }
@@ -62,7 +63,7 @@ void UserDataManager::removeUser()
     std::string id;
     std::cin >> id;
     if (!isUserExist(id)) {
-        throw std::runtime_error("用户不存在");
+        outputError("用户不存在");
         return;
     }
     vdata.erase(searchDataByAdmin(id));
@@ -71,7 +72,7 @@ void UserDataManager::removeUser()
 void UserDataManager::pay(const std::string &id, const std::string &utility_type)
 {
     if (!isUserExist(id)) {
-        throw std::runtime_error("用户不存在");
+        outputError("用户不存在");
         return;
     }
     if (utility_type == "water") {
@@ -81,7 +82,7 @@ void UserDataManager::pay(const std::string &id, const std::string &utility_type
     } else if (utility_type == "gas") {
         (*searchDataByAdmin(id))->pay(GAS);
     } else {
-        throw std::runtime_error("未知的水电气类型");
+        outputError("未知的水电气类型");
         return;
     }
 }
@@ -90,13 +91,13 @@ void UserDataManager::readFromFile(UserType user_type)
 {
     std::ifstream file(input_filename);
     if (!file.is_open()) {
-        throw std::runtime_error("文件打开失败");
+        outputError("文件打开失败");
     }
     while (!file.eof()) {
         std::string str;
         file >> str;
         if (!isUserExist(str)) {
-            throw std::runtime_error("用户不存在, 请先添加用户");
+            outputError("用户不存在, 请先添加用户");
             break;
         } else {
             auto it = searchDataByAdmin(str);
@@ -108,7 +109,7 @@ void UserDataManager::readFromFile(UserType user_type)
             } else if (str == "gas") {
                 (*it)->addUtilityDataFromFile(user_type, GAS, file);
             } else {
-                throw std::runtime_error("未知的水电气类型");
+                outputError("未知的水电气类型");
                 break;
             }
         }
@@ -120,7 +121,7 @@ void UserDataManager::saveToFile() const
 {
     std::ofstream file(output_filename);
     if (!file.is_open()) {
-        throw std::runtime_error("文件打开失败");
+        outputError("文件打开失败");
     }
     for (const auto &data : vdata) {
         data->showUserInfo(file);
@@ -132,7 +133,7 @@ void UserDataManager::saveHistoryToFile() const
 {
     std::ofstream file(output_filename);
     if (!file.is_open()) {
-        throw std::runtime_error("文件打开失败");
+        outputError("文件打开失败");
     }
     for (const auto &data : vdata) {
         file << *data << std::endl;

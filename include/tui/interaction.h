@@ -8,7 +8,7 @@ void waitForKey();
 
 void showWelcome();
 
-void outputError(const std::runtime_error &err);
+void outputError(const std::string &err);
 
 void showGoodbye();
 

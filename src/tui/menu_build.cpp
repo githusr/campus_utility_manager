@@ -6,7 +6,7 @@ std::shared_ptr<MenuItem> main_menu = std::make_shared<MenuItem>("主菜单");
 void menuBuild()
 {
     auto bill_query = std::make_shared<MenuItem>("账单查询");
-    auto admin_login = std::make_shared<MenuItem>("管理员登录");
+    auto admin_login = std::make_shared<MenuItem>("管理员登录", adminLogin);
     main_menu->addSubItem(bill_query);
     main_menu->addSubItem(admin_login);
 
