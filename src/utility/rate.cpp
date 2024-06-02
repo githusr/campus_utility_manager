@@ -1,4 +1,5 @@
 #include "utility/rate.h"
+#include "tui/interaction.h"
 #include <iostream>
 
 std::istream &operator>>(std::istream &is, Rate &rate)
@@ -8,7 +9,7 @@ std::istream &operator>>(std::istream &is, Rate &rate)
     is >> free_quota >> unit_price;
 
     if (rate.free_quota < 0 || rate.unit_price < 0) {
-        throw std::runtime_error("免费额度和单价不能为负数");
+        outputError("免费额度和单价不能为负数");
         return is;
     }
 

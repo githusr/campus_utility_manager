@@ -1,8 +1,9 @@
-#include "tui/output_error.h"
+#include <cstddef>
 #include <iostream>
 
-void outputError(const std::runtime_error &error_message)
+int main()
 {
-    std::cerr << error_message.what() << std::endl;
-    waitForKey();
+    size_t choice = 9;
+    std::cin >> choice;
+    std::cout << choice << std::endl;
 }
