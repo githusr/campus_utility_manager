@@ -1,17 +1,19 @@
 #ifndef USER_H
 #define USER_H
 
+#include "user/user_type.h"
 #include "utility/rate.h"
 #include "utility/utility_data.h"
 #include "utility/utility_type.h"
 #include <array>
 #include <istream>
 #include <string>
-#include "user/user_type.h"
+
 class User
 {
     friend std::istream &operator>>(std::istream &is, User &user);
     friend std::ostream &operator<<(std::ostream &os, const User &user);
+
 public:
     virtual std::istream &read(std::istream &is) = 0;
     virtual std::ostream &print(std::ostream &os) const = 0;

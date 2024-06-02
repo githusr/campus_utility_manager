@@ -7,6 +7,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+
 class UtilityData
 {
     friend std::istream &operator>>(std::istream &is, UtilityData &utility_data);

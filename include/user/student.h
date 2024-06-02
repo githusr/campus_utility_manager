@@ -7,12 +7,12 @@
 class Student : public User
 {
 public:
-    void showTitleForHistory() override; 
+    void showTitleForHistory() override;
     void showTitleForUserInfo() override;
 
 public:
     void showUserInfo(std::ostream &os) const override;
-    
+
 public:
     Student() = default;
     Student(std::string id, std::string name, int grade);

@@ -3,10 +3,11 @@
 
 #include "user.h"
 #include <istream>
+
 class Faculty : public User
 {
 public:
-    void showTitleForHistory() override; 
+    void showTitleForHistory() override;
     void showTitleForUserInfo() override;
 
 public:
