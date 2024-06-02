@@ -1,4 +1,4 @@
-#include "admin.h"
+#include "tui/admin.h"
 
 Admin::Admin(std::string password) : password(std::move(password)) {}
 

@@ -7,6 +7,7 @@
 
 extern bool isWaitingForKey;
 extern bool isLogin;
+extern bool login_status;
 
 void navigateMenu(const std::shared_ptr<MenuItem> &main_menu)
 {
@@ -38,7 +39,10 @@ void navigateMenu(const std::shared_ptr<MenuItem> &main_menu)
                 std::cin >> choice;
                 if (std::cin.fail()) {
                     std::cin.clear();
-                    outputError("无效输入! 请重新选择.");
+                    clearScreen();
+                    std::cerr << "无效输入! 请重新选择." << std::endl;
+                    waitForKey();
+                    clearScreen();
                     current_menu->printMenu();
                     puts("  0. 返回");
                     puts("------------------------------------------");
@@ -55,16 +59,20 @@ void navigateMenu(const std::shared_ptr<MenuItem> &main_menu)
                 clearScreen();
                 menu_stack.push(selected_menu);
             } else {
+                clearScreen();
                 std::cerr << "无效输入! 请重新选择." << std::endl;
                 waitForKey();
                 clearScreen();
             }
 
         } else if (!current_menu->sub_items.empty() && current_menu->action) {
+
             current_menu->action();
             if (isLogin) {
-                waitForKey();
-                clearScreen();
+                if (!login_status) {
+                    waitForKey();
+                    clearScreen();
+                }
                 current_menu->printMenu();
                 puts("  0. 返回");
                 puts("------------------------------------------");
@@ -74,7 +82,10 @@ void navigateMenu(const std::shared_ptr<MenuItem> &main_menu)
                     std::cin >> choice;
                     if (std::cin.fail()) {
                         std::cin.clear();
-                        outputError("无效输入! 请重新选择.");
+                        clearScreen();
+                        std::cerr << "无效输入! 请重新选择." << std::endl;
+                        waitForKey();
+                        clearScreen();
                         current_menu->printMenu();
                         puts("  0. 返回");
                         puts("------------------------------------------");
@@ -84,9 +95,11 @@ void navigateMenu(const std::shared_ptr<MenuItem> &main_menu)
                     }
                 }
                 if (choice == 0) {
+                    login_status = false;
                     menu_stack.pop();
                     clearScreen();
                 } else if (choice > 0 && choice <= current_menu->sub_items.size()) {
+                    login_status = true;
                     auto selected_menu = current_menu->sub_items[choice - 1];
                     clearScreen();
                     menu_stack.push(selected_menu);
@@ -96,7 +109,6 @@ void navigateMenu(const std::shared_ptr<MenuItem> &main_menu)
                     clearScreen();
                 }
             } else {
-                isWaitingForKey = false;
                 menu_stack.pop();
             }
         }
