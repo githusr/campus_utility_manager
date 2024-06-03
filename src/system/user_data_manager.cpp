@@ -1,6 +1,7 @@
 #include "system/user_data_manager.h"
 #include "tui/interaction.h"
 #include "utility/utility_type.h"
+#include <algorithm>
 #include <iostream>
 
 auto UserDataManager::searchDataByAdmin(const std::string &id) const
@@ -164,6 +165,7 @@ void UserDataManager::outputHistory() const
         }
         std::cout << *data << std::endl;
         data->showHistory(std::cout);
+        std::cout << std::endl;
     }
 }
 
