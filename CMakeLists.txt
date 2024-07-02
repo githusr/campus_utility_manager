@@ -6,6 +6,13 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-include_directories(include)
-file(GLOB_RECURSE SRC "src/*.cpp")
-add_executable(main ${SRC})
+add_subdirectory(system)
+add_subdirectory(tui)
+add_subdirectory(user)
+add_subdirectory(utility)
+
+add_executable(main main.cpp)
+
+target_link_libraries(main PUBLIC
+    tui
+)
