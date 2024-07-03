@@ -1,6 +1,3 @@
-#ifndef MENU_BUILD_H
-#define MENU_BUILD_H
+#pragma once
 
 void menuBuild();
-
-#endif

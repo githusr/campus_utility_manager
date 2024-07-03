@@ -1,6 +1,3 @@
-#ifndef UTILITY_TYPE_H
-#define UTILITY_TYPE_H
+#pragma once
 
 using UtilityType = enum UtilityType { WATER, ELECTRICITY, GAS, UTILITY_TYPE_TOTAL };
-
-#endif

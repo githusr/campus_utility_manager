@@ -1,5 +1,4 @@
-#ifndef USER_H
-#define USER_H
+#pragma once
 
 #include "user/user_type.h"
 #include "utility/rate.h"
@@ -48,5 +47,3 @@ protected:
     std::array<UtilityData, UTILITY_TYPE_TOTAL> utility;
     static std::array<std::array<Rate, UTILITY_TYPE_TOTAL>, USER_TYPE_TOTAL> rate;
 };
-
-#endif

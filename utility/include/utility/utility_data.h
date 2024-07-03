@@ -1,5 +1,4 @@
-#ifndef UTILITY_DATA_H
-#define UTILITY_DATA_H
+#pragma once
 
 #include "utility/rate.h"
 #include <fstream>
@@ -37,5 +36,3 @@ private:
     void calculateFeeToPay();
     void updateFeeData(const Rate &rate);
 };
-
-#endif

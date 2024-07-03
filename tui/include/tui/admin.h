@@ -1,5 +1,4 @@
-#ifndef ADMIN_H
-#define ADMIN_H
+#pragma once
 
 #include <string>
 
@@ -15,5 +14,3 @@ public:
 private:
     std::string password;
 };
-
-#endif

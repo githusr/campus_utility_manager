@@ -1,5 +1,4 @@
-#ifndef FACULTY_H
-#define FACULTY_H
+#pragma once
 
 #include "user/user.h"
 #include <istream>
@@ -21,5 +20,3 @@ private:
     std::istream &read(std::istream &is) override;
     std::ostream &print(std::ostream &os) const override;
 };
-
-#endif

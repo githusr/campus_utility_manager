@@ -1,5 +1,4 @@
-#ifndef MENU_ITEM_H
-#define MENU_ITEM_H
+#pragma once
 
 #include <memory>
 #include <string>
@@ -19,5 +18,3 @@ public:
     void (*action)();
     std::vector<std::shared_ptr<MenuItem>> sub_items;
 };
-
-#endif

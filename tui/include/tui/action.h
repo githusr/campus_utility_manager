@@ -1,5 +1,4 @@
-#ifndef ACTION_H
-#define ACTION_H
+#pragma once
 
 void adminLogin();
 
@@ -40,5 +39,3 @@ void historyDataFaculty();
 void processAndExportDataStudent();
 
 void processAndExportDataFaculty();
-
-#endif

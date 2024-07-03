@@ -1,5 +1,4 @@
-#ifndef USER_DATA_MANAGER_H
-#define USER_DATA_MANAGER_H
+#pragma once
 
 #include "user/user.h"
 #include <memory>
@@ -43,5 +42,3 @@ private:
     auto searchDataByAdmin(const std::string &id) const;
     bool isUserExist(const std::string &id) const;
 };
-
-#endif
