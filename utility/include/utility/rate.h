@@ -1,5 +1,4 @@
-#ifndef RATE_H
-#define RATE_H
+#pragma once
 
 #include <istream>
 
@@ -19,5 +18,3 @@ private:
     double free_quota;
     double unit_price;
 };
-
-#endif

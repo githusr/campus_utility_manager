@@ -1,5 +1,4 @@
-#ifndef INTERACTION_H
-#define INTERACTION_H
+#pragma once
 
 #include <string>
 
@@ -12,5 +11,3 @@ void showWelcome();
 void outputError(const std::string &err);
 
 void showGoodbye();
-
-#endif
