@@ -2,7 +2,6 @@
 #include "utility/rate.h"
 #include <fstream>
 #include <iostream>
-#include <ranges>
 #include <string>
 
 std::istream &operator>>(std::istream &is, UtilityData &utility_data)
@@ -46,9 +45,9 @@ void UtilityData::addFromFile(const Rate &rate, std::ifstream &file_name)
 
 void UtilityData::pay()
 {
-    for (auto &data : std::ranges::reverse_view(fee_data)) {
-        if (!data.second) {
-            data.second = true;
+    for (auto it = fee_data.rbegin(); it != fee_data.rend(); ++it) {
+        if (!it->second) {
+            it->second = true;
         } else {
             break;
         }
