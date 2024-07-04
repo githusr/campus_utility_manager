@@ -1,5 +1,6 @@
 add_library(system
     src/user_data_manager.cpp
+    include/system/user_data_manager.h
 )
 
 target_include_directories(system PUBLIC
